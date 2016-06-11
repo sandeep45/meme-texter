@@ -109,12 +109,22 @@ export const doSendingOfMessage = () => {
     ).
     then(
       (response) => {
+        console.log("about to add number");
         dispatch(flashTheNotification());
-        dispatch(addNumber(name, to));
-        dispatch(addNewMessage());
+        return dispatch(addNumber(name, to));
       },
       (response) => {
         alert(`error sending message: ${response}`);
+        return Promise.reject();
+      }
+    ).
+    then(
+      (response) => {
+        console.log("about to add new message: ", response);
+        dispatch(addNewMessage());
+      },
+      (response) => {
+        alert(`error adding number message: ${response}`);
       }
     )
 

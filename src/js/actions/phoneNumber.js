@@ -19,9 +19,11 @@ export const addNumber = (name, number) => {
       return addPhoneNumber(name, number).then(
         (response) => {
           dispatch(receiveNewNumber(response))
+          return Promise.resolve();
         },
         (response) => {
           alert("failed to add number: ", response);
+          return Promise.reject();
         },
       );
     }else{
