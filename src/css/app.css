@@ -1,0 +1,29 @@
+.dashboard {
+  padding: 40px 15px;
+  text-align: center;
+}
+.container-fluid {
+  margin-top: 20px;
+}
+.lightblue {
+  color: lightblue;
+}
+.previewImage{
+  margin: 10px;
+  border:1px solid black;
+  height: 200px;
+}
+.imagePreviewInTable{
+  border:1px solid black;
+  width: 350px;
+}
+.inlineBlock{
+  display: inline-block;
+}
+
+/* Custom styles for this template STARTS*/
+body {
+  min-height: 500px;
+  padding-top: 50px;
+}
+/* Custom styles for this template ENDS*/
