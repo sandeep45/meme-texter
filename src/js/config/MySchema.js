@@ -7,3 +7,7 @@ phoneNumber.define({
   messages: arrayOf(message)
 });
 
+message.define({
+  phone_number: phoneNumber
+});
+

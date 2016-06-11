@@ -1,19 +1,20 @@
 import axios from "axios";
+import _ from "lodash";
 
 import K from "../constants/"
 import { getAllMessages, addMessage } from "../config/WebUtil.js"
 
-export const receiveNewMessage = (message) => {
+export const receiveNewMessage = (response) => {
   return {
     type: K.RECEIVE_NEW_MESSAGE,
-    message
+    response
   }
 };
 
-export const receiveMessages = (messages) => {
+export const receiveMessages = (response) => {
   return {
     type: K.RECEIVE_MESSAGES,
-    messages
+    response
   }
 };
 
@@ -25,7 +26,7 @@ export const addNewMessage = () => {
     const tag = state.message.tag;
     const text = state.message.text;
     const direction = "outgoing";
-    const phone_number_id = state.phoneNumbers.find( item => item.number == state.message.to ).id
+    const phone_number_id = _.values(state.entities.phoneNumbers).find( item => item.number == state.message.to ).id
 
     addMessage(body, direction, phone_number_id, tag, text).then(
       (response) => {

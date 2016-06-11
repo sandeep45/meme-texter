@@ -1,12 +1,13 @@
 import { connect } from 'react-redux'
+import _ from 'lodash'
 
 import MessageList from '../components/MessageList.js'
 import {updateMessage, initiatePhoneNumberDeletion, fetchMessages} from '../actions'
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    messages: state.messages.sort((a,b) => b.id - a.id),
-    phoneNumbers: state.phoneNumbers
+    messages: _.values(state.entities.messages).sort((a,b) => b.id - a.id),
+    phoneNumbers: _.values(state.entities.phoneNumbers)
   }
 };
 

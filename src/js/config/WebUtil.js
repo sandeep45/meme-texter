@@ -81,7 +81,7 @@ export const getAllPhoneNumbers = () => {
     axios.get(`/phone_numbers.json`).
       then(
         (response) => {
-          console.log("got all phone numbers: ", response);
+          console.log("got all phone numbers: ", response.data);
           const normalizedData = normalize(response.data, arrayOf(MySchema.phoneNumber));
           console.log("got all phone numbers: ", normalizedData)
           resolve(normalizedData);
@@ -104,7 +104,7 @@ export const addPhoneNumber = (name, number) => {
     }).
     then(
       (response) => {
-        console.log("got added phone number: ", response);
+        console.log("got added phone number: ", response.data);
         const normalizedData = normalize(response.data, MySchema.phoneNumber);
         console.log("got added phone number normalized: ", normalizedData)
         resolve(normalizedData);
@@ -138,8 +138,10 @@ export const getAllMessages = () => {
     axios.get(`/messages.json`).
       then(
         (response) => {
-          console.log("got messages: ", response);
-          resolve(response.data);
+          console.log("got back all messages: ", response.data);
+          const normalizedData = normalize(response.data, arrayOf(MySchema.message));
+          console.log("got added phone number normalized: ", normalizedData)
+          resolve(normalizedData);
         },
         (response) => {
           reject("Error: " + response.status + " - " + response.message)
@@ -160,7 +162,10 @@ export const addMessage = (body, direction, phone_number_id, tag, text) => {
     }).
     then(
       (response) => {
-        console.log("got back new message: ", response);
+          console.log("got back new message: ", response.data);
+          const normalizedData = normalize(response.data, MySchema.message);
+          console.log("got added message normalized: ", normalizedData);
+          resolve(normalizedData);
         resolve(response.data);
       },
       (response) => {
