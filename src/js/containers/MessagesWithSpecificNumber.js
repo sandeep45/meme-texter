@@ -1,9 +1,41 @@
 import { connect } from 'react-redux'
+import React, { PropTypes, Component } from 'react'
 
 import MessageList from '../components/MessageList.js'
 import {fetchMessages} from '../actions'
 import * as helpers from '../config/helpers'
 import _ from "lodash";
+
+class MessagesWithSpecificNumber extends Component {
+  constructor(props) {
+    super(props)
+  }
+
+  componentWillMount() {
+    const selectedPhoneNumber = this.props.params.phone_number;
+    console.log("component mounted " + selectedPhoneNumber);;
+    this._loadData(selectedPhoneNumber);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const selectedPhoneNumber = this.props.params.phone_number;
+    const newPhoneNumberPassed = nextProps.params.phone_number;
+    console.log("component will receive NEW props " + nextProps.params.phone_number);
+    if(newPhoneNumberPassed != selectedPhoneNumber){
+    this._loadData(newPhoneNumberPassed);
+    }
+  }
+
+  _loadData(phoneNumber){
+    console.log("[Optional]asked to load data for: " + phoneNumber);
+  };
+
+  render(){
+    return(
+      <MessageList {...this.props} />
+    );
+  };
+}
 
 const mapStateToProps = (state, ownProps) => {
 
@@ -14,7 +46,7 @@ const mapStateToProps = (state, ownProps) => {
     allNumbers, "number", selectedPhoneNumber
   );
 
-  const associatedMessagIds = selectedPhoneNumberRecord.messages
+  const associatedMessagIds = selectedPhoneNumberRecord.messages || []
 
   return {
     caption: `Messages with ${selectedPhoneNumberRecord.number}`,
@@ -31,10 +63,10 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   }
 };
 
-const AllMessages = connect(
+MessagesWithSpecificNumber = connect(
   mapStateToProps,
   mapDispatchToProps
-)(MessageList);
+)(MessagesWithSpecificNumber);
 
-export default AllMessages;
+export default MessagesWithSpecificNumber;
 
