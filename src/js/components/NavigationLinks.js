@@ -20,7 +20,8 @@ const NavigationLinks = (props) => {
         <div id="navbar" className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul className="nav navbar-nav">
             <li> <Link to="/">Home</Link> </li>
-            <li> <Link to="/phone_numbers">Phone Numbers</Link> </li>
+            <li> <Link to="/all_phone_numbers">All Phone Numbers</Link> </li>
+            <li> <Link to="/paginated_phone_numbers">Paginated Phone Numbers</Link> </li>
             <li> <Link to="/messages">Messages</Link> </li>
           </ul>
         </div>

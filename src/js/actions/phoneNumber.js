@@ -4,12 +4,33 @@ import _ from "lodash";
 import K from "../constants/"
 import { addPhoneNumber, getAllPhoneNumbers, deletePhoneNumber } from "../config/WebUtil.js"
 
+export const updatePageNumber = (pageNumber) => {
+  return {
+    type: K.UPDATE_PAGE_NUMBER,
+    pageNumber
+  }
+};
+
+export const updateStartNumber = (startNumber) => {
+  return {
+    type: K.UPDATE_START_NUMBER,
+    startNumber
+  }
+};
+
+export const updateEndNumber = (endNumber) => {
+  return {
+    type: K.UPDATE_END_NUMBER,
+    endNumber
+  }
+};
+
 export const receiveNewNumber = (response) => {
   return {
     type: K.RECEIVE_NEW_NUMBER,
     response
   }
-}
+};
 
 export const addNumber = (name, number) => {
   return (dispatch, getState) => {
@@ -41,9 +62,9 @@ export const receivePhoneNumbers = (response) => {
   }
 }
 
-export const fetchPhoneNumbers = () => {
+export const fetchPhoneNumbers = (pageNumber) => {
   return (dispatch) => {
-    getAllPhoneNumbers().then(
+    getAllPhoneNumbers(pageNumber).then(
       (response) => {
         dispatch(receivePhoneNumbers(response))
       },
@@ -51,6 +72,13 @@ export const fetchPhoneNumbers = () => {
         alert("failed to receive phone book: ", response);
       },
     );
+  }
+};
+
+export const refreshPageOfPhoneNumbers = () =>{
+  return (dispatch, getState) => {
+    const state = getState();
+    dispatch(fetchPhoneNumbers(state.phoneNumbers.currentPage));
   }
 }
 

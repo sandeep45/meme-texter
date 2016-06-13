@@ -76,20 +76,31 @@ export const send = (to, instanceImageUrl) => {
   });
 }
 
-export const getAllPhoneNumbers = () => {
+export const getAllPhoneNumbers = (pageNumber) => {
   return new Promise( (resolve, reject) => {
-    axios.get(`/phone_numbers.json`).
-      then(
-        (response) => {
-          console.log("got all phone numbers: ", response.data);
-          const normalizedData = normalize(response.data, arrayOf(MySchema.phoneNumber));
-          console.log("got all phone numbers: ", normalizedData)
-          resolve(normalizedData);
-        },
-        (response) => {
-          reject("Error: " + response.status + " - " + response.message)
+    axios.get(`/phone_numbers.json`, {
+      params:{
+        page: pageNumber
+      }
+    }).
+    then(
+      (response) => {
+        console.log("got all phone numbers (raw): ", response.data);
+        const normalizedData = normalize(response.data, arrayOf(MySchema.phoneNumber));
+        console.log("got all phone numbers (normalized): ", normalizedData);
+        if(pageNumber){
+          normalizedData.paginationData = {
+            [MySchema.phoneNumber.getKey()]: {
+              [pageNumber]: normalizedData.result
+            }
+          }
         }
-      );
+        resolve(normalizedData);
+      },
+      (response) => {
+        reject("Error: " + response.status + " - " + response.message)
+      }
+    );
 
   });
 }

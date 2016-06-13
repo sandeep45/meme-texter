@@ -1,5 +1,6 @@
 npm install --save normalizr
 npm install --save lodash
+npm install --save autobind-decorator
 
 setup loading of non fetched data on show page
 componentWillMount() {
@@ -12,6 +13,15 @@ componentWillReceiveProps(nextProps) {
   }
 }
 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Pagination
+
+Front end should only show what it desires to.
+And it should be able to ask backend to give it more data when it desires so.
+
+so front end says show page 2 with 10 per page.
+now it should only show those records even if it has more in front end store.
+if it has less it needs to fetch more.
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 build mime builder
