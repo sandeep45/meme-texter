@@ -67,6 +67,7 @@ PaginationLine.propTypes = {
   currentPageNumber: PropTypes.number.isRequired,
   startNumber: PropTypes.number.isRequired,
   endNumber: PropTypes.number.isRequired,
+  itemsPerPage: PropTypes.number.isRequired,
 
   updateStartNumber: PropTypes.func.isRequired,
   updateEndNumber: PropTypes.func.isRequired,

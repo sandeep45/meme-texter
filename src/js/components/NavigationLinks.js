@@ -22,7 +22,7 @@ const NavigationLinks = (props) => {
             <li> <Link to="/">Home</Link> </li>
             <li> <Link to="/all_phone_numbers">All Phone Numbers</Link> </li>
             <li> <Link to="/paginated_phone_numbers">Paginated Phone Numbers</Link> </li>
-            <li> <Link to="/messages">Messages</Link> </li>
+            <li> <Link to="/all_messages">All Messages</Link> </li>
           </ul>
         </div>
       </div>

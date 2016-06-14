@@ -1,7 +1,7 @@
 import merge from 'lodash/merge'
 
 const initialSate = {
-  phoneNumbers: {}
+  phoneNumbers: {},
 };
 
 const pagination = (state=initialSate, action) => {

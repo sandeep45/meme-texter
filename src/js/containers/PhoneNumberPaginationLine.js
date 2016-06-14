@@ -10,7 +10,8 @@ const mapStateToProps = (state, ownProps) => {
   return {
     currentPageNumber: state.phoneNumbers.currentPage,
     startNumber: state.phoneNumbers.startNumber,
-    endNumber: state.phoneNumbers.endNumber
+    endNumber: state.phoneNumbers.endNumber,
+    itemsPerPage: 3
   };
 };
 

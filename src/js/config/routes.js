@@ -12,9 +12,9 @@ import MessagesWithSpecificNumber from "../containers/MessagesWithSpecificNumber
 const routes = (
   <Route path="/" component={App}>
     <IndexRoute component={Dashboard} />
+    <Route path="/all_messages" component={AllMessges} />
     <Route path="/paginated_phone_numbers" component={PaginatedPhoneNumbers} />
     <Route path="/all_phone_numbers" component={AllPhoneNumbers} />
-    <Route path="/messages" component={AllMessges} />
     <Route path="/phone_numbers/:phone_number/messages" component={MessagesWithSpecificNumber} />
   </Route>
 );
