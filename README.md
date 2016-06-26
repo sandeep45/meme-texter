@@ -1,3 +1,4 @@
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 npm install --save normalizr
 npm install --save lodash
 npm install --save autobind-decorator
@@ -12,6 +13,48 @@ componentWillReceiveProps(nextProps) {
     loadData(nextProps)
   }
 }
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+node uuid
+save last state(perhaps just data) to localstorage and then hydrate from that
+concise function declaration when a function is inside an object
+use throttle for preveting too many calls to a function
+create a root element in root.js
+extract attributes from props, in the method paranthesis
+with-router to get router params in ownProps.params in a deeply nested component( one that is not opened from a route)
+in mapDispatchToProps, if the params of callback match the params of the action creator, then you can just pass a hash with callback name to action creator name. and it wil autoamtically dispatch the action creators result
+using selectors to get data from a store. the selector knows what slice of the state to get data from and how to get it. the container's mapStateToProps, we will call that selector with the entire state to get the data the needed from the state and therefore we dont need to now know about how data is kept in the store.
+in store maintain a hash(`byids`) with keys being ids and values being objects, then also maintain an array of ids(`allIds`). now you can write a selector(`getAllTodos`) to get an array of objects by mapping over each id and reading from the object.
+use `console.group` and `console.groupEnd`
+to do fetching of data in the UI, rather than in mapStateToProps, fetch the data in `componentDiDMount` and then again in `componentDidUpdate`. this assumes that fetching of the data depends upon something which causes the componentDidUpdate to fire. an e.g. of this is the url params. Its better to call an async action instead
+write a middleware. we define what we want to do and then call the original dispatch. lets call the original dispatch - `next`, as its just the next function to be called and may have alreadyh been over-written. currying concept.
+use combineReducer more than once.
+keep a list of ids for ever tab/page
+todos: {
+    byId: {
+
+    },
+    idsByPage: {
+        page1: [],
+        page2: []
+    }
+}
+on click of a tab/page, fetch the daata.
+store the structure of the state in the selectors, this way we dont have cascading effects when state structure changes
+In the component's/container render you can do `return <h1> No data </h1>` if data.length == 0. Same can be done for isFetching.
+There can be a reducer called `isFetching`. This can store boolean for data being fetched. We can store it by the name of the slice which is being fetched.
+page1: [1,2,3]
+this becomes
+page1: {
+    ids: [1,2,3],
+    isFetching: true
+}
+in action, before making ajax we fire the request action, so the isFetching is set to true
+and then when its received, its set back to false.
+top level selector is called with the entire state, which then gets the correct slice of state and calls the appropriate selector in the reducer file. this selector then lookups on the sliced state it gets.
+in fetch todos, directly pass the action object for request and receive. no need to have object creators for them as they will never  be called directly. Also name the consistently like
+FETCH_TODOS_SUCCESS, FETCH_TODOS_FAILURE, FETCH_TODOS_REQUEST
+response, message, null
+Error component with message and retry button
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Pagination

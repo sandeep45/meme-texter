@@ -1,14 +1,16 @@
 import React, { PropTypes, Component } from 'react'
 
-class PreviewLine extends Component{
+import ImageRow from '../components/ImageRow.js'
+
+class VariousImages extends Component{
 
   constructor(props){
     super(props);
   };
 
   _imageUrls = () => {
-    const {selectedImageId, selectedGeneratorId, variousImages, text0, text1} = this.props;
-    return variousImages.map( (item) => {
+    const {selectedImageId, selectedGeneratorId, images, text0, text1} = this.props;
+    return images.map( (item) => {
 
       let highlightClass = "";
       let okSignClass = "hide";
@@ -16,8 +18,6 @@ class PreviewLine extends Component{
         highlightClass="bg-warning"
         okSignClass = "previewOk"
       }
-
-
 
       return (
         <div className={`col-md-2 ${highlightClass}`}
@@ -44,31 +44,30 @@ class PreviewLine extends Component{
   };
 
   render() {
-    const {variousImages, previewSelected, text} = this.props;
+    const {images, ...restOfThem} = this.props;
 
     return (
-      <div className="panel panel-default">
-        <div className="panel-heading">
-          Preview - Please select one
-        </div>
-        <div className="panel-body">
-          <div className="row">
-
-            {this._imageUrls()}
-
-          </div>
-        </div>
+      <div>
+        <ImageRow images={images.slice(0,4)} {...restOfThem}/>
+        <ImageRow images={images.slice(4,8)} {...restOfThem}/>
+        <ImageRow images={images.slice(8,12)} {...restOfThem}/>
       </div>
     );
   };
 
 }
 
-PreviewLine.propTypes = {
-  variousImages: PropTypes.array,
+VariousImages.propTypes = {
+  images: PropTypes.array.isRequired,
   previewSelected: PropTypes.func.isRequired,
-  text0: PropTypes.string.isRequired,
-  text1: PropTypes.string.isRequired
+  text0: PropTypes.string,
+  text1: PropTypes.string
 };
 
-export default PreviewLine;
+VariousImages.defaultProps = {
+  previewSelected: () => {},
+  text0: "Hello",
+  text1: "World"
+}
+
+export default VariousImages;

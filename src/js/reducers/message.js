@@ -11,7 +11,9 @@ const initialSate = {
     generatorId: ""
   },
   instanceImageUrl: "",
-  showNotification: false
+  showNotification: false,
+  showErrorNotification: false,
+  errorMessage: ""
 }
 const message = (state=initialSate, action) => {
   switch(action.type){
@@ -45,6 +47,12 @@ const message = (state=initialSate, action) => {
 
     case K.HIDE_NOTIFICATION:
       return Object.assign({}, state, {showNotification: false})
+
+    case K.SHOW_ERROR_NOTIFICATION:
+      return Object.assign({}, state, {showErrorNotification: true, errorMessage: action.message})
+
+    case K.HIDE_ERROR_NOTIFICATION:
+      return Object.assign({}, state, {showErrorNotification: false, errorMessage: null})
 
     default:
       return state

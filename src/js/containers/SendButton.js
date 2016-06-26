@@ -17,25 +17,22 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   }
 };
 
-let SendMessage = (props) => {
+let SendButton = (props) => {
   const {onClickOfSendButton} = props;
 
   return (
-    <div className="panel-panel-default">
-      <div className="panel-body">
-        <input type="button" className="btn btn-success btn-lg"
-          onClick={onClickOfSendButton}
-          value="Send SMS Message"
-        />
-      </div>
-    </div>
+    <button className="top-send-button" type="button"
+      className="btn btn-success pull-right"
+      onClick={onClickOfSendButton}>
+        Send <span className="glyphicon glyphicon-send"></span>
+    </button>
   );
 }
 
-SendMessage = connect(
+SendButton = connect(
   mapStateToProps,
   mapDispatchToProps
-)(SendMessage);
+)(SendButton);
 
-export default SendMessage;
+export default SendButton;
 

@@ -1,4 +1,5 @@
 import React, { PropTypes, Component } from 'react'
+import SendButton from '../containers/SendButton.js'
 
 class MessageForm extends Component {
 
@@ -15,24 +16,6 @@ class MessageForm extends Component {
         </div>
         <div className="panel-body">
           <form>
-
-            <div className="form-group">
-              <label htmlFor="name">Name:</label>
-                <input type="text" className="form-control" id="name"
-                ref={(c) => this._to_name = c}
-                value={name}
-                onChange={this._updateName}
-              />
-            </div>
-
-            <div className="form-group">
-              <label htmlFor="number">Number</label>
-              <input type="text" className="form-control" id="number"
-                ref={(c) => this._to = c}
-                value={to}
-                onChange={this._updateTo}
-              />
-            </div>
 
             <div className="form-group">
               <label htmlFor="message">Message</label>
@@ -77,6 +60,11 @@ class MessageForm extends Component {
               />
             </div>
 
+            {this._putNotificationScreen()}
+            {this._putErrorScreen()}
+
+            <SendButton />
+
           </form>
         </div>
       </div>
@@ -112,15 +100,38 @@ class MessageForm extends Component {
     this._tag.value = evt.target.innerText;
     this._updateTag({target: { value: evt.target.innerText } });
   }
+
+  _putNotificationScreen = () => {
+    if(this.props.showNotification == true){
+      return (
+        <p className="bg-success" style={{padding: "10px"}}>Message has been Sent !</p>
+      );
+    }else{
+      return ""
+    }
+  }
+
+  _putErrorScreen = () => {
+    if(this.props.showErrorNotification == true){
+      return (
+        <p className="bg-danger" style={{padding: "10px"}}>Failure! {this.props.errorMessage}</p>
+      );
+    }else{
+      return ""
+    }
+  }
 };
 
 MessageForm.propTypes = {
   to: PropTypes.string.isRequired,
+  errorMessage: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
   tag: PropTypes.string.isRequired,
   searchMemeTemplates: PropTypes.func.isRequired,
-  updateMessage: PropTypes.func.isRequired
+  updateMessage: PropTypes.func.isRequired,
+  showNotification: PropTypes.bool.isRequired,
+  showErrorNotification: PropTypes.bool.isRequired
 };
 
 export default MessageForm;

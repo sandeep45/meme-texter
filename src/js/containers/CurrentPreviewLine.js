@@ -7,7 +7,7 @@ import {splitTextInToTwo} from '../config/helpers.js'
 const mapStateToProps = (state, ownProps) => {
   const {text} = state.message;
   return {
-    variousImages: state.message.variousImages,
+    variousImages: state.message.variousImages.slice(0,6),
     text0: splitTextInToTwo(text)[0],
     text1: splitTextInToTwo(text)[1],
     selectedImageId: state.message.selectedPreviewItem.imageId,

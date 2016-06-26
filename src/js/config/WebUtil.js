@@ -186,3 +186,21 @@ export const addMessage = (body, direction, phone_number_id, tag, text) => {
 
   });
 }
+
+export const searchPhoneNumbers = (phrase) => {
+  return new Promise( (resolve, reject) => {
+    axios.get(`/phone_numbers/search.json`, {
+      params: { phrase: phrase }
+    }).
+    then(
+      (response) => {
+        const normalizedData = normalize(response.data, arrayOf(MySchema.phoneNumber));
+        normalizedData.phrase = phrase;
+        resolve(normalizedData);
+      },
+      (response) => {
+        reject(response);
+      }
+    );
+  });
+};

@@ -15,15 +15,21 @@ const NavigationLinks = (props) => {
             <span className="icon-bar"></span>
             <span className="icon-bar"></span>
           </button>
-          <a className="navbar-brand" href="#">SMS on Meme's</a>
+          <a className="navbar-brand" href="#">SMS Meme's</a>
         </div>
         <div id="navbar" className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul className="nav navbar-nav">
-            <li> <Link to="/">Home</Link> </li>
-            <li> <Link to="/all_phone_numbers">All Phone Numbers</Link> </li>
-            <li> <Link to="/paginated_phone_numbers">Paginated Phone Numbers</Link> </li>
-            <li> <Link to="/all_messages">All Messages</Link> </li>
+            <li> <Link to="/">Message Builder</Link> </li>
+            <li> <Link to="/all_messages">My Messages</Link> </li>
+            <li> <Link to="/paginated_phone_numbers">Phone Book</Link> </li>
+            <li> <Link to="/dashboard">Old View</Link> </li>
           </ul>
+          <ul className="nav navbar-nav navbar-right">
+           <li>
+
+            </li>
+          </ul>
+
         </div>
       </div>
     </nav>

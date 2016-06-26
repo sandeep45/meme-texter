@@ -8,24 +8,30 @@ import { addNumber } from "./phoneNumber.js"
 
 export const flashTheNotification = () => {
   return (dispatch) => {
-    dispatch(showNotification());
+    dispatch({
+      type: K.SHOW_NOTIFICATION
+    });
     window.setTimeout(() => {
-      dispatch(hideNotification());
-    }, 2000);
+      dispatch({
+        type: K.HIDE_NOTIFICATION
+      });
+    }, 5000);
   }
 }
 
-export const showNotification = () => {
-  return {
-    type: K.SHOW_NOTIFICATION
+export const flashErrorNotification = (message) => {
+  return (dispatch) => {
+    dispatch({
+      type: K.SHOW_ERROR_NOTIFICATION,
+      message
+    });
+    window.setTimeout(() => {
+      dispatch({
+        type: K.HIDE_ERROR_NOTIFICATION
+      });
+    }, 5000);
   }
-};
-
-export const hideNotification = () => {
-  return {
-    type: K.HIDE_NOTIFICATION
-  }
-};
+}
 
 export const updateMessage = (attributes) => {
   return {
@@ -93,6 +99,10 @@ export const doSendingOfMessage = () => {
     const {to, name, text} = state.message;
     const [text0, text1] = splitTextInToTwo(text);
 
+    if(!to || to.length != 10){
+      return dispatch(flashErrorNotification("Phone Number needed."));
+    }
+
     dispatch(
       buildInstance(imageId, generatorId, text0, text1)
     ).
@@ -103,28 +113,27 @@ export const doSendingOfMessage = () => {
         // return send(to, response)
       },
       (response) => {
-        alert(`error building image instance: ${response}`);
-        return Promise.reject();
+        return Promise.reject("Please select a Meme.");
       }
     ).
     then(
       (response) => {
         console.log("about to add number");
-        dispatch(flashTheNotification());
         return dispatch(addNumber(name, to));
       },
       (response) => {
-        alert(`error sending message: ${response}`);
-        return Promise.reject();
+        return Promise.reject(response);
       }
     ).
     then(
       (response) => {
         console.log("about to add new message: ", response);
         dispatch(addNewMessage());
-      },
+        dispatch(flashTheNotification());
+      }
+    ).catch(
       (response) => {
-        alert(`error adding number message: ${response}`);
+        dispatch(flashErrorNotification(response));
       }
     )
 

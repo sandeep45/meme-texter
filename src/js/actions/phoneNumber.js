@@ -3,6 +3,7 @@ import _ from "lodash";
 
 import K from "../constants/"
 import { addPhoneNumber, getAllPhoneNumbers, deletePhoneNumber } from "../config/WebUtil.js"
+import * as WebUtil from "../config/WebUtil.js"
 
 export const updatePageNumber = (pageNumber) => {
   return {
@@ -103,4 +104,49 @@ export const initiatePhoneNumberDeletion = (id) => {
 }
 
 
+export const searchPhoneNumbers = (phrase) => {
+  return (dispatch) => {
+    dispatch({
+      type: K.SEARCH_PHONE_NUMBERS_REQUEST,
+      phrase
+    });
+
+    return WebUtil.searchPhoneNumbers(phrase).
+      then(
+        (response) => {
+          dispatch({
+            type: K.SEARCH_PHONE_NUMBERS_SUCCESS,
+            response
+          });
+        },
+        (response) => {
+          dispatch({
+            type: K.SEARCH_PHONE_NUMBERS_FAILURE,
+            response
+          });
+        }
+      );
+  }
+}
+
+export const updatedSearchedPhonePhrase = (phrase) => {
+  return {
+    type: K.UPDATE_SEARCHED_PHONE_PHRASE,
+    phrase
+  }
+}
+
+export const markDropDownValueSelected = () => {
+  return {
+    type: K.UPDATE_SEARCHED_DROP_DOWN_CLICK,
+    value: true
+  }
+}
+
+export const markDropDownValueUnSelected = () => {
+  return {
+    type: K.UPDATE_SEARCHED_DROP_DOWN_CLICK,
+    value: false
+  }
+}
 
