@@ -109,8 +109,8 @@ export const doSendingOfMessage = () => {
     then(
       (response) => {
         dispatch(updateInstanceImageUrl(response));
-        return Promise.resolve()
-        // return send(to, response)
+        // return Promise.resolve()
+        return send(to, response)
       },
       (response) => {
         return Promise.reject("Please select a Meme.");

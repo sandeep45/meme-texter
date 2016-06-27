@@ -47,6 +47,7 @@ this becomes
 page1: {
     ids: [1,2,3],
     isFetching: true
+    errorMessage: null
 }
 in action, before making ajax we fire the request action, so the isFetching is set to true
 and then when its received, its set back to false.
@@ -55,6 +56,19 @@ in fetch todos, directly pass the action object for request and receive. no need
 FETCH_TODOS_SUCCESS, FETCH_TODOS_FAILURE, FETCH_TODOS_REQUEST
 response, message, null
 Error component with message and retry button
+write thunks like a curried function in one line
+export const myAction = (p1, p2) => (dispatch) =>
+    reutrn WebUtil.bla(pa1, pa2).
+        then(response => dispatch( {type: K.t, repsonse}) )
+when new entity is added/deleted the entities reducer will need to add/delete it.
+also the filters setup to hold list of ids will also need to listen for it and update itself.
+so page keys in pagination should also listen for delete and remove items from the key
+do normalization in actions
+have a schema object for array of schema object. in schema.js file.
+  export const todo = new Schema("todos");
+  export const arrayOfTodos = arrayOf(todo);
+  use as schema.todo & schema.arrayOfTodos when doing normalization
+ use spread operator to do the merge {...state, ...action.response.entities}
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Pagination

@@ -4,7 +4,7 @@ const initialSate = {
   to: "",
   text: "",
   name: "",
-  tag: "crazy",
+  tag: "trump",
   variousImages: [],
   selectedPreviewItem: {
     imageId: "",
