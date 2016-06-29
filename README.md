@@ -1,7 +1,25 @@
 # DOCKER
 
+## To start on Local Machine
+
+````
+cd ~/code/meme_backend
+docker build -t sandeep45/myrailsapp:v1 .
+
+cd ~/code/meme-texter
+docker build --build-arg APP_SERVER=app -t sandeep45/mynginxapp:v1 .
+
+docker rm app
+docker rm web
+
+docker run --name app -p 4000:3000 sandeep45/myrailsapp:v1
+docker run --name web -p 80:8080 --link app sandeep45/mynginxapp:v1
+````
+
+
+
 `cx servers list --stack meme-texter` - List my servers
-`cx ssh giraffe --stack meme-texte` - SSH to the box
+`cx ssh giraffe --stack meme-texter` - SSH to the box
 `docker ps` - gives running containers
 `docker exec -it web.sensitive-good-robin /bin/bash` - get bash script for Web container
 `docker exec -it app.easygoing-ambitious-scorpion /bin/bash` - get bash script for App container
@@ -36,7 +54,7 @@ it also links to another container: "app".
 
 ````
 docker build -t sandeep45/mynginx:v4 .
-docker run --name web -p 80:8080 --link app sandeep45/mynginx:v4
+docker run --name web -p 80:8080 --link app -e "APP_SERVER=app" sandeep45/mynginx:v4
 ````
 
 ##  APP

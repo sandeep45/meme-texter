@@ -12,7 +12,7 @@ COPY dist /usr/share/nginx/html
 
 COPY nginx.conf.template /etc/nginx/nginx.conf.template
 
-ENV APP_SERVER app
+ARG APP_SERVER
 
 RUN envsubst < /etc/nginx/nginx.conf.template > /etc/nginx/nginx.conf
 
