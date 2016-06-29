@@ -1,3 +1,37 @@
+docker
+connect to a running container
+`docker ps -l` and get the container id
+`docker exec -it b1622ffcdd90 /bin/bash` runs bin/bash on the container
+
+## WEB
+
+Build docker container for meme-texter called "Web"
+this has nginx internally working on port 8080.
+it exposes it to port 80.
+it also links to another container: "app".
+
+````
+docker build -t sandeep45/mynginx:v4 .
+docker run --name web -p 80:8080 --link app sandeep45/mynginx:v4
+````
+
+##  APP
+
+Build docker container for meme-backend called "App"
+this has rails server working on port 3000
+it exposes it to port 3000.
+
+````
+cd ~/code/meme_backend$
+docker build -t sandeep45/myrailsapp:v1 .
+docker run --name app sandeep45/myrailsapp:v1
+````
+The nginx configuration is modified to connect to its upstream at "app"
+
+the -p option goes like incoming_port:container_port.
+the first port is the port on the host we will visit, which is then connected to the second port on the running container
+in this case we are not exposing any port to the outside world as the web will directly connect to its 3000 port.
+
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 npm install --save normalizr
 npm install --save lodash

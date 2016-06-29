@@ -7,7 +7,10 @@
   "scripts": {
     "start": "webpack-dev-server --debug --inline --hot --progress --colors --display-reasons",
     "test": "mocha --compilers js:babel-register --recursive",
-    "test:watch": "npm test -- --watch"
+    "test:watch": "npm test -- --watch",
+    "dev_compile": "NODE_ENV=development webpack --progress --colors --display-error-details --display-chunks --display-reasons",
+    "prod_compile": "NODE_ENV=production webpack -p --progress --colors --display-error-details --display-chunks --display-reasons --config webpack.production.config.js",
+    "clean": "rm ./dist/bundle.js"
   },
   "author": "",
   "license": "ISC",
