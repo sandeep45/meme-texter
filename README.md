@@ -1,7 +1,31 @@
+# DOCKER
+
+`cx servers list --stack meme-texter` - List my servers
+`cx ssh giraffe --stack meme-texte` - SSH to the box
+`docker ps` - gives running containers
+`docker exec -it web.sensitive-good-robin /bin/bash` - get bash script for Web container
+`docker exec -it app.easygoing-ambitious-scorpion /bin/bash` - get bash script for App container
 docker
 connect to a running container
 `docker ps -l` and get the container id
 `docker exec -it b1622ffcdd90 /bin/bash` runs bin/bash on the container
+
+- Volumes
+- env variables
+- dev/prod workflow with callbacks/triggers
+- build process - migration, assets, webpack etc.
+
+multiple containers listening on the same external port, will get load balanced by c66.
+(Elastic DNS)[http://help.cloud66.com/network/service-network-settings]
+allows containers to access other containers by going to containername.cloud66.local
+In my case from web container I can access upstream by doing api.cloud66.local:3000
+Note I am referring the internal exposed port of the container and not the external port it maybe mapped to.
+
+envsubst can be used to map enviornment variables to their values
+````
+echo "yo yo $HOSTNAME" | envsubst
+yo yo a328cda1af6f
+````
 
 ## WEB
 
