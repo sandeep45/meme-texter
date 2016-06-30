@@ -18,4 +18,4 @@ RUN envsubst < /etc/nginx/nginx.conf.template > /etc/nginx/nginx.conf
 
 EXPOSE 8080
 
-ENTRYPOINT ["nginx"]
+CMD ["nginx"]

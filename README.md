@@ -1,5 +1,7 @@
 # DOCKER
 
+use netcat to test
+
 ## To start on Local Machine
 
 ````
