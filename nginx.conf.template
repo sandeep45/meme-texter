@@ -44,15 +44,15 @@ http {
         }
 
         location /api {
-            proxy_pass http://$APP_SERVER:3000;
+            proxy_pass http://api.cloud66.local:3000;
         }
 
         location /phone_number {
-            proxy_pass http://$APP_SERVER:3000;
+            proxy_pass http://api.cloud66.local:3000;
         }
 
         location /message {
-            proxy_pass http://$APP_SERVER:3000;
+            proxy_pass http://api.cloud66.local:3000;
         }
 
         #error_page  404              /404.html;
