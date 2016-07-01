@@ -1,5 +1,11 @@
 # DOCKER
 
+swap commands when running an image by overriding the CMD.
+`docker run -it web --name web /bin/bash`
+this will run a container by the name of "web" and it will load an image called "web" and when doing so it will run the command /bin/bash instead of the CMD specified in the Dockerfile. This is really useful. Also why we prefer to use CMD over ENTRYPOINT, as for the later overriding is a bit different and thus difficult.
+Commands can also be run with docker-compose
+`docker-compose run web \bin\bash`
+
 use netcat to test
 
 ## To start on Local Machine
