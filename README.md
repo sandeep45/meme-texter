@@ -1,5 +1,11 @@
 # DOCKER
 
+docker-compose run exec runs the container and swaps the command, so if you /bin/bash to a postgres server, now you have a server with no postgres and you are in it
+
+to do psql
+first get on to a box which is on the network which has the containers
+then from there, do `psql meme_backend_development -h postgres.cloud66.local -U postgres
+
 swap commands when running an image by overriding the CMD.
 `docker run -it web --name web /bin/bash`
 this will run a container by the name of "web" and it will load an image called "web" and when doing so it will run the command /bin/bash instead of the CMD specified in the Dockerfile. This is really useful. Also why we prefer to use CMD over ENTRYPOINT, as for the later overriding is a bit different and thus difficult.
