@@ -16,6 +16,8 @@ COPY nginx.conf $NGINX_CONFIG_HOME
 
 COPY dist /usr/share/nginx/html
 
+RUN mkdir logs
+
 EXPOSE 8080
 
 CMD ["nginx"]
