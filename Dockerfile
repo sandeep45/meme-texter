@@ -6,7 +6,8 @@ RUN apt-get update && apt-get install -y -q \
   curl \
   net-tools \
   man \
-  vim
+  vim \
+  dnsutils
 
 ENV NGINX_CONFIG_HOME /etc/nginx
 
